@@ -18,6 +18,9 @@ const config = {
  				"success": "#14532d",
  				"warning": "#d97706",
  				"error": "#7f1d1d",
+			},
+			fontFamily: {
+				catherine: ["Catherine", "sans-serif"],
 			}
 		}
 	},
