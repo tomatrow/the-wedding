@@ -1,0 +1,4 @@
+{
+	"prettier.format-on-save": "Global Default",
+	"tailwindcss.workspace.tailwindConfig": "tailwind.config.cjs"
+}
