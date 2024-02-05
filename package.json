@@ -10,7 +10,8 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test": "vitest",
 		"lint": "prettier --check . && eslint .",
-		"format": "prettier --write ."
+		"format": "prettier --write .",
+		"generate-airtable-schema": "~/src/airtable-typegen/bin/dev $AIRTABLE_TYPEGEN_WORKSPACE_ID --zod --output ./src/lib/schema/wedding.ts"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.1.1",
