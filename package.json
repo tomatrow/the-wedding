@@ -23,6 +23,7 @@
 		"@types/lodash-es": "^4.17.12",
 		"@typescript-eslint/eslint-plugin": "^6.20.0",
 		"@typescript-eslint/parser": "^6.20.0",
+		"airtable": "^0.12.2",
 		"autoprefixer": "^10.4.17",
 		"daisyui": "^4.6.1",
 		"eslint": "^8.56.0",

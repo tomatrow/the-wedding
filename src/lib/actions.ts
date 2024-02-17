@@ -1,5 +1,5 @@
-import type { Action } from 'svelte/action';
+import type { Action } from 'svelte/action'
 
 export const indeterminate: Action<HTMLInputElement> = (element) => {
-	element.indeterminate = true;
-};
+	element.indeterminate = true
+}
