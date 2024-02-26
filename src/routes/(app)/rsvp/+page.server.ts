@@ -6,7 +6,6 @@ import { zod } from 'sveltekit-superforms/adapters'
 import { z } from 'zod'
 import { createPeople } from '$lib/airtable'
 
-
 const NameSchema = z.string().min(1)
 
 const SubmissionSchema = z.object({
@@ -79,7 +78,7 @@ export const actions = {
 				const person = PeopleSchema.parse({
 					Name: name,
 					Attendance: attendance,
-					'Submit Time': new Date(),
+					'Submit Time': new Date()
 				})
 
 				people = [person]

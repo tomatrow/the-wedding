@@ -1,3 +1,31 @@
+<script lang="ts">
+	interface Vehicle {
+		isTrailer: boolean
+	}
+
+	interface Data {
+		name: string
+		partySize: number
+		vehicles: Vehicle[]
+		sharing: boolean
+		tentSize: {
+			width: number
+			height: number
+		}
+	}
+
+	const data = $state<Data>({
+		name: '',
+		partySize: 1,
+		vehicles: [],
+		sharing: false,
+		tentSize: {
+			height: 0,
+			width: 0
+		}
+	})
+</script>
+
 <article class="container prose mx-auto px-4">
 	<h1>Parking and Campsite Details</h1>
 
@@ -15,6 +43,24 @@
 				>April 18</strong
 			>.
 		</p>
+
+		<!-- <form>
+			<input type="text" bind:value={data.name} />
+			<input type="number" bind:value={data.partySize} />
+			{#each data.vehicles as _, index}
+				<div>
+					<input type="checkbox" bind:checked={data.vehicles[index].isTrailer} />
+				</div>
+			{/each}
+
+			<input type="checkbox" bind:checked={data.sharing} />
+			{#if data.sharing}
+				<input type="number" bind:value={data.tentSize.width} />
+				<input type="number" bind:value={data.tentSize.height} />
+			{/if}
+		</form> -->
+		
+		<i>form coming soon</i>
 	</section>
 
 	<section>
