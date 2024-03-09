@@ -22,8 +22,8 @@
 			greetings instead. (AJ has no such need, of course; you may greet him in your preferred manner.)
 		</p>
 		<p>
-			Clapping, cheering, or any other loud form of celebration is also banned for this day. You will receive a streamer
-			that you may wave in the air as an alternative.
+			Clapping, cheering, or any other loud form of celebration is also banned for this day. You will receive a ribbon
+			wand that you may wave in the air as an alternative.
 		</p>
 	</aside>
 </section>
