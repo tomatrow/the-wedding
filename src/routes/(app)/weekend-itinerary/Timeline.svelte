@@ -8,7 +8,7 @@
 		children?: Snippet
 	}
 
-	const key: ContextKey<(item: LineItem) => void> = "timeline"
+	const key: ContextKey<(item: LineItem) => void> = 'timeline'
 
 	export function addItem(item: LineItem) {
 		const addItem = getContext(key)
