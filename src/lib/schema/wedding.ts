@@ -14,7 +14,8 @@ export const PeopleSchema = z.object({
 	'Submit Time': z.coerce.date().optional(),
 	Wishes: z.string().optional(),
 	'Granted Wishes': z.array(z.string()).optional(),
-	'Seed Round': z.array(z.string()).optional()
+	'Seed Round': z.array(z.string()).optional(),
+	Identifier: z.string().optional()
 })
 export type People = z.infer<typeof PeopleSchema>
 
