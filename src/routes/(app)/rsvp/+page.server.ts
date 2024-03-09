@@ -1,10 +1,11 @@
-import type { Actions, PageServerLoad } from './$types'
-import { PeopleAttendance, PeopleMainDish, PeopleBread, PeopleSchema, type People } from '$lib/schema/wedding'
-import { superValidate } from 'sveltekit-superforms/server'
 import { fail } from '@sveltejs/kit'
 import { zod } from 'sveltekit-superforms/adapters'
+import { superValidate, message, type Infer } from 'sveltekit-superforms/server'
 import { z } from 'zod'
-import { createPeople } from '$lib/airtable'
+import { pick } from 'lodash-es'
+import { PeopleAttendance, PeopleMainDish, PeopleBread, PeopleSchema, type People } from '$lib/schema/wedding'
+import { createPeople, getPeople } from '$lib/airtable'
+import type { Actions, PageServerLoad } from './$types'
 
 const NameSchema = z.string().min(1)
 
@@ -22,13 +23,29 @@ const SubmissionSchema = z.object({
 		.default([])
 })
 
-export const load = async ({}: Parameters<PageServerLoad>[0]) => {
-	const form = await superValidate(zod(SubmissionSchema))
-	return { form }
+interface Message {
+	success?: boolean
+	text?: string
+}
+
+export const load: PageServerLoad = async ({ cookies }) => {
+	const insignia = cookies.get('insignia')
+	const form = await superValidate<Infer<typeof SubmissionSchema>, Message>(zod(SubmissionSchema))
+
+	let pastSubmissions: Pick<People, 'Main Dish' | 'Attendance' | 'Bread' | 'Name'>[] = []
+	if (insignia) {
+		const people = await getPeople(insignia)
+		pastSubmissions = people.map((person) => pick(person.fields, 'Main Dish', 'Attendance', 'Bread', 'Name'))
+	}
+
+	return { form, pastSubmissions }
 }
 
 export const actions = {
-	async default({ request }) {
+	async default({ request, cookies }) {
+		const insignia = cookies.get('insignia')
+		console.log({ request, insignia })
+
 		const form = await superValidate(request, zod(SubmissionSchema))
 
 		const { valid, data } = form
@@ -68,7 +85,8 @@ export const actions = {
 						Attendance: attendance,
 						'Submit Time': new Date(),
 						'Main Dish': mainDish,
-						Bread: breadSide
+						Bread: breadSide,
+						Identifier: insignia
 					})
 				)
 
@@ -78,7 +96,8 @@ export const actions = {
 				const person = PeopleSchema.parse({
 					Name: name,
 					Attendance: attendance,
-					'Submit Time': new Date()
+					'Submit Time': new Date(),
+					Identifier: insignia
 				})
 
 				people = [person]
@@ -91,6 +110,9 @@ export const actions = {
 
 		await createPeople(people)
 
-		return { form }
+		return message<Message>(form, {
+			success: true,
+			text: 'Thank you'
+		})
 	}
 } satisfies Actions
