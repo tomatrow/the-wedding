@@ -20,8 +20,10 @@
 		Fortunately, something did happen, and Catherine informed AJ of her growing affection, after which AJ admitted he
 		felt the same. Over the next six years, AJ introduced Catherine to a world of adventures that she never would have
 		tried on her own, like driving to San Fransisco or intentionally talking to actual people who weren’t her family.
-		During a trip to Yosemite, AJ took Catherine to The Faithful Couple, two trees that grew so close together that
-		their bases fused. Here, he proposed that they make their arrangement more permanent. And so, on May 18, 2024, they
-		will return to the forest to establish a marriage covenant and begin a new adventure that will never end.
+		Catherine changed AJ's perspective on the nature of glass measuring; sometimes, the glass isn't half empty, in fact,
+		it can even be full. During a trip to Yosemite, AJ took Catherine to The Faithful Couple, two trees that grew so
+		close together that their bases fused. Here, he proposed that they make their arrangement more permanent. And so, on
+		May 18, 2024, they will return to the forest to establish a marriage covenant and begin a new adventure that will
+		never end.
 	</p>
 </article>
