@@ -26,7 +26,7 @@
 	})
 </script>
 
-<article class="container prose mx-auto px-4">
+<article class="container prose mx-auto px-4 prose-strong:text-white">
 	<h1>Parking and Campsite Details</h1>
 
 	<section>
