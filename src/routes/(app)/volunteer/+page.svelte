@@ -1,4 +1,4 @@
-<article class="container prose mx-auto px-4">
+<article class="container prose mx-auto px-4 prose-strong:text-white">
 	<h1>Volunteer Opportunities</h1>
 	<p>Would you like to lend a helping hand? Well, you may keep your hand, but we would love your help!</p>
 
