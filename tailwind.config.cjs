@@ -5,19 +5,17 @@ const forms = require('@tailwindcss/forms')
 /** @type {import('tailwindcss').Config}*/
 const config = {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
-
+	darkMode: ['variant', ['@media (prefers-color-scheme: dark) { &:not(.light *) }', '&:is(.dark *)']],
 	theme: {
 		extend: {
 			colors: {
-				primary: '#111827',
-				secondary: '#581c87',
-				accent: '#dc8850',
-				neutral: '#2e282a',
-				'base-100': '#854d0e',
-				info: '#047857',
-				success: '#14532d',
-				warning: '#d97706',
-				error: '#7f1d1d'
+				'base-100': '#714a33',
+				primary: '#000000',
+				neutral: '#d2c3a3',
+				info: '#87ceeb',
+				success: '#6e4e37',
+				warning: '#f4a261',
+				error: '#c44536'
 			},
 			fontFamily: {
 				catherine: ['Catherine', 'sans-serif']
