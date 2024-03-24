@@ -1,29 +1,33 @@
 <script lang="ts">
-	interface Vehicle {
-		isTrailer: boolean
-	}
-
-	interface Data {
-		name: string
-		partySize: number
-		vehicles: Vehicle[]
-		sharing: boolean
-		tentSize: {
-			width: number
-			height: number
-		}
-	}
-
-	const data = $state<Data>({
-		name: '',
-		partySize: 1,
-		vehicles: [],
-		sharing: false,
-		tentSize: {
-			height: 0,
-			width: 0
-		}
+	import { superForm } from 'sveltekit-superforms/client'
+	import type { PageData } from './$types'
+	import {
+		TextField,
+		SubmissionsTable,
+		SubmitButton,
+		FormMessage,
+		CheckboxField,
+		NumberField,
+		SelectField
+	} from '$lib/components'
+	import { slide } from 'svelte/transition';
+	import { quintOut } from 'svelte/easing';
+	
+	
+	const { data }: { data: PageData } = $props()
+	const { form, constraints, enhance, errors, message, delayed } = superForm(data.form, {
+		dataType: 'json',
+		multipleSubmits: 'prevent'
 	})
+
+	if (!$form.tentSize) {
+		$form.tentSize = {
+			width: 1,
+			height: 1
+		}
+	}
+
+	console.log({ x: data.vehicleTypes })
 </script>
 
 <article class="container prose mx-auto px-4 prose-strong:text-white">
@@ -44,23 +48,57 @@
 			>.
 		</p>
 
-		<!-- <form>
-			<input type="text" bind:value={data.name} />
-			<input type="number" bind:value={data.partySize} />
-			{#each data.vehicles as _, index}
-				<div>
-					<input type="checkbox" bind:checked={data.vehicles[index].isTrailer} />
+		{#if $message}
+			<FormMessage success={$message?.success} message={$message.text ?? $message} />
+		{/if}
+
+		<form
+			method="POST"
+			class="not-prose mt-16 {$message?.success ? 'hidden' : 'flex'} flex-col items-start gap-4"
+			use:enhance
+		>
+			<TextField bind:value={$form.name} label="What is your name?" placeholder="Name" errors={$errors.name} {...$constraints.name} />
+
+			<NumberField label="Party Size" bind:value={$form.partySize} {...$constraints.partySize} />
+
+			<CheckboxField
+				bind:checked={$form.sharable}
+				label="Are you open to sharing a campsite?"
+				{...$constraints.sharable}
+			/>
+
+			{#if $form.sharable && $form.tentSize}
+				<div class="flex gap-4 flex-wrap" transition:slide={{ axis: 'y' }}>
+					<NumberField label="Tent Width" bind:value={$form.tentSize.width} {...$constraints.tentSize?.width ?? {}} />
+					<NumberField label="Tent Height" bind:value={$form.tentSize.height} {...$constraints.tentSize?.height ?? {}} />
+				</div>
+			{/if}
+
+
+			{#each $form.vehicles as _, index}
+				<div class="pt-4" transition:slide={{ axis: 'y' }}>
+					Vehicle {index + 1}
+					<SelectField
+						label="Choose a vehicle type"
+						placeholder="Vehicle Type"
+						bind:value={$form.vehicles[index].vehicleType}
+						values={Object.values(data.vehicleTypes).map((value) => ({ value }))}
+					/>
 				</div>
 			{/each}
-
-			<input type="checkbox" bind:checked={data.sharing} />
-			{#if data.sharing}
-				<input type="number" bind:value={data.tentSize.width} />
-				<input type="number" bind:value={data.tentSize.height} />
+			
+			{#if $form.vehicles.length < 2}
+				<button type="button" class="btn btn-success" onclick={() => {
+					$form.vehicles = [...$form.vehicles, { vehicleType: "Non-Trailer" }]
+				}}>Add Vehicle</button>
 			{/if}
-		</form> -->
-		
-		<i>form coming soon</i>
+
+			<SubmitButton loading={$delayed} />
+		</form>
+
+		{#if data.pastSubmissions.length}
+			<SubmissionsTable data={data.pastSubmissions} order={['Name', "Party Size", "Sharable", "Tent Width", "Tent Height", "Primary Vehicle Type", "Secondary Vehicle Type"]} />
+		{/if}
 	</section>
 
 	<section>

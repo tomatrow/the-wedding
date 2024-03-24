@@ -4,7 +4,7 @@
 	import Circle from '$lib/components/Circle.svelte'
 	import type { PageData } from './$types'
 
-	const { data } = $props<{ data: PageData }>()
+	const { data }: { data: PageData } = $props()
 	const { form, constraints, enhance, errors, message, delayed } = superForm(data.form, {
 		dataType: 'json',
 		multipleSubmits: 'prevent'

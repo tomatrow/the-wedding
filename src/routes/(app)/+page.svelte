@@ -11,6 +11,9 @@
 			This is a fancy occasion, so you may wear formal clothes in shades of green, purple, and brown. Remember, however,
 			that you will be outside, so sturdy shoes, sunscreen, and insect repellent may be helpful.
 		</p>
+		<p>
+			Children are welcome to attend; please submit an RSVP for them too. We will provide coloring pages for their entertainment.
+		</p>
 	</aside>
 
 	<aside>

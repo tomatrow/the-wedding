@@ -45,3 +45,38 @@ export const SeedRoundSchema = z.object({
 	Gifters: z.array(z.string()).optional()
 })
 export type SeedRound = z.infer<typeof SeedRoundSchema>
+
+export const CampsitesPrimaryVehicleType = z.enum(['Non-Trailer', 'Trailer'])
+
+export const CampsitesSecondaryVehicleType = z.enum(['Non-Trailer', 'Trailer'])
+
+export const CampsitesSchema = z.object({
+	Name: z.string().optional(),
+	'Submit Time': z.coerce.date().optional(),
+	Identifier: z.string().optional(),
+	Sharable: z.boolean().optional(),
+	'Tent Width': z.number().positive().optional(),
+	'Tent Height': z.number().positive().optional(),
+	'Primary Vehicle Type': CampsitesPrimaryVehicleType.optional(),
+	'Secondary Vehicle Type': CampsitesSecondaryVehicleType.optional(),
+	'Party Size': z.number().int().positive().optional()
+})
+export type Campsites = z.infer<typeof CampsitesSchema>
+
+export const VolunteersRole = z.enum([
+	'Ferry Driver',
+	'Cauldron Tender',
+	'Vegetable Tender',
+	'Server',
+	'Keeper of the Bread',
+	'Veggie Master',
+	'Hydrator'
+])
+
+export const VolunteersSchema = z.object({
+	Name: z.string().optional(),
+	'Submit Time': z.coerce.date().optional(),
+	Identifier: z.string().optional(),
+	Role: VolunteersRole.optional()
+})
+export type Volunteers = z.infer<typeof VolunteersSchema>
