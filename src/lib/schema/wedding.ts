@@ -13,7 +13,7 @@ export const PeopleSchema = z.object({
 	Bread: PeopleBread.optional(),
 	'Submit Time': z.coerce.date().optional(),
 	Wishes: z.string().optional(),
-	'Granted Wishes': z.array(z.string()).optional(),
+	'Granted Wishes': z.string().optional(),
 	'Seed Round': z.array(z.string()).optional(),
 	Identifier: z.string().optional()
 })
@@ -29,10 +29,11 @@ export const WishesSchema = z.object({
 export type Wishes = z.infer<typeof WishesSchema>
 
 export const GrantedWishesSchema = z.object({
-	Date: z.coerce.date().optional(),
+	Name: z.string().optional(),
+	Quantity: z.number().int().positive().optional(),
 	Wish: z.array(z.string()).optional(),
-	Granters: z.array(z.string()).optional(),
-	Quantity: z.number().int().positive().optional()
+	Date: z.coerce.date().optional(),
+	Identifier: z.string().optional()
 })
 export type GrantedWishes = z.infer<typeof GrantedWishesSchema>
 
