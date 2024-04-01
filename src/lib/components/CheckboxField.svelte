@@ -23,10 +23,15 @@
 	} & SvelteHTMLElements['input'] = $props()
 </script>
 
-
-<div class="form-control" >
+<div class="form-control">
 	<label class="label cursor-pointer">
-		<span class="label-text text-white mr-2">{label}</span>
-		<input use:applyIndeterminate={indeterminate} type="checkbox" bind:checked class="checkbox  checkbox-primary" {...rest} />
+		<span class="label-text mr-2 text-white">{label}</span>
+		<input
+			use:applyIndeterminate={indeterminate}
+			type="checkbox"
+			bind:checked
+			class="checkbox-primary checkbox"
+			{...rest}
+		/>
 	</label>
 </div>
