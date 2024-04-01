@@ -10,10 +10,8 @@
 		NumberField,
 		SelectField
 	} from '$lib/components'
-	import { slide } from 'svelte/transition';
-	import { quintOut } from 'svelte/easing';
-	
-	
+	import { slide } from 'svelte/transition'
+
 	const { data }: { data: PageData } = $props()
 	const { form, constraints, enhance, errors, message, delayed } = superForm(data.form, {
 		dataType: 'json',
@@ -26,8 +24,6 @@
 			height: 1
 		}
 	}
-
-	console.log({ x: data.vehicleTypes })
 </script>
 
 <article class="container prose mx-auto px-4 prose-strong:text-white">
@@ -57,7 +53,13 @@
 			class="not-prose mt-16 {$message?.success ? 'hidden' : 'flex'} flex-col items-start gap-4"
 			use:enhance
 		>
-			<TextField bind:value={$form.name} label="What is your name?" placeholder="Name" errors={$errors.name} {...$constraints.name} />
+			<TextField
+				bind:value={$form.name}
+				label="What is your name?"
+				placeholder="Name"
+				errors={$errors.name}
+				{...$constraints.name}
+			/>
 
 			<NumberField label="Party Size" bind:value={$form.partySize} {...$constraints.partySize} />
 
@@ -68,12 +70,15 @@
 			/>
 
 			{#if $form.sharable && $form.tentSize}
-				<div class="flex gap-4 flex-wrap" transition:slide={{ axis: 'y' }}>
+				<div class="flex flex-wrap gap-4" transition:slide={{ axis: 'y' }}>
 					<NumberField label="Tent Width" bind:value={$form.tentSize.width} {...$constraints.tentSize?.width ?? {}} />
-					<NumberField label="Tent Height" bind:value={$form.tentSize.height} {...$constraints.tentSize?.height ?? {}} />
+					<NumberField
+						label="Tent Height"
+						bind:value={$form.tentSize.height}
+						{...$constraints.tentSize?.height ?? {}}
+					/>
 				</div>
 			{/if}
-
 
 			{#each $form.vehicles as _, index}
 				<div class="pt-4" transition:slide={{ axis: 'y' }}>
@@ -86,18 +91,33 @@
 					/>
 				</div>
 			{/each}
-			
+
 			{#if $form.vehicles.length < 2}
-				<button type="button" class="btn btn-success" onclick={() => {
-					$form.vehicles = [...$form.vehicles, { vehicleType: "Non-Trailer" }]
-				}}>Add Vehicle</button>
+				<button
+					type="button"
+					class="btn btn-success"
+					onclick={() => {
+						$form.vehicles = [...$form.vehicles, { vehicleType: 'Non-Trailer' }]
+					}}>Add Vehicle</button
+				>
 			{/if}
 
 			<SubmitButton loading={$delayed} />
 		</form>
 
 		{#if data.pastSubmissions.length}
-			<SubmissionsTable data={data.pastSubmissions} order={['Name', "Party Size", "Sharable", "Tent Width", "Tent Height", "Primary Vehicle Type", "Secondary Vehicle Type"]} />
+			<SubmissionsTable
+				data={data.pastSubmissions}
+				order={[
+					'Name',
+					'Party Size',
+					'Sharable',
+					'Tent Width',
+					'Tent Height',
+					'Primary Vehicle Type',
+					'Secondary Vehicle Type'
+				]}
+			/>
 		{/if}
 	</section>
 

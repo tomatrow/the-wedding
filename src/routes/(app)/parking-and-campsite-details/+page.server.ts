@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { superValidate, message } from 'sveltekit-superforms'
 import { zod } from 'sveltekit-superforms/adapters'
 import { pick } from 'lodash-es'
@@ -8,7 +7,6 @@ import { fail } from '@sveltejs/kit'
 import { createCampsite, getCampsites } from '$lib/airtable'
 import { type Campsites, CampsitesPrimaryVehicleType } from '$lib/schema/wedding'
 
-// Define outside the load function so the adapter can be cached
 const SubmissionSchema = z.object({
 	name: z.string(),
 	partySize: z.number().min(1),
@@ -32,10 +30,30 @@ export const load = async ({ cookies }: Parameters<PageServerLoad>[0]) => {
 	const insignia = cookies.get('insignia')
 	const form = await superValidate(zod(SubmissionSchema))
 
-	let pastSubmissions: Pick<Campsites, 'Name' | "Party Size" | "Primary Vehicle Type" | "Secondary Vehicle Type" | "Sharable" | "Tent Height" | "Tent Width"> [] = []
+	let pastSubmissions: Pick<
+		Campsites,
+		| 'Name'
+		| 'Party Size'
+		| 'Primary Vehicle Type'
+		| 'Secondary Vehicle Type'
+		| 'Sharable'
+		| 'Tent Height'
+		| 'Tent Width'
+	>[] = []
 	if (insignia) {
 		const campsites = await getCampsites(insignia)
-		pastSubmissions = campsites.map((campsite) => pick(campsite.fields, 'Name' , "Party Size" , "Primary Vehicle Type" , "Secondary Vehicle Type" , "Sharable" , "Tent Height" , "Tent Width"))
+		pastSubmissions = campsites.map((campsite) =>
+			pick(
+				campsite.fields,
+				'Name',
+				'Party Size',
+				'Primary Vehicle Type',
+				'Secondary Vehicle Type',
+				'Sharable',
+				'Tent Height',
+				'Tent Width'
+			)
+		)
 	}
 
 	return { form, pastSubmissions, vehicleTypes: CampsitesPrimaryVehicleType.enum }
