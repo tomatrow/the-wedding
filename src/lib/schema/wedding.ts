@@ -32,7 +32,7 @@ export const GrantedWishesSchema = z.object({
 	Name: z.string().optional(),
 	Quantity: z.number().int().positive().optional(),
 	Wish: z.array(z.string()).optional(),
-	Date: z.coerce.date().optional(),
+	'Submit Time': z.coerce.date().optional(),
 	Identifier: z.string().optional()
 })
 export type GrantedWishes = z.infer<typeof GrantedWishesSchema>
