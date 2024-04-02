@@ -42,7 +42,13 @@
 			class="not-prose mt-16 {$message?.success ? 'hidden' : 'flex'} flex-col items-start gap-4"
 			use:enhance
 		>
-			<TextField bind:value={$form.name} placeholder="Name" errors={$errors.name} {...$constraints.name} />
+			<TextField
+				bind:value={$form.name}
+				placeholder="Name"
+				label="What is your name?"
+				errors={$errors.name}
+				{...$constraints.name}
+			/>
 			<SelectField
 				label="What role shall you fulfill?"
 				placeholder="Role"

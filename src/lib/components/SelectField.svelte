@@ -2,10 +2,12 @@
 	let {
 		label,
 		value = $bindable(),
+		ref = $bindable(),
 		values,
 		placeholder
 	}: {
 		value?: T
+		ref?: HTMLSelectElement | undefined
 		values: {
 			value: T
 			label?: string
@@ -21,7 +23,7 @@
 			<span class="label-text text-white">{label}</span>
 		</div>
 
-		<select class="select select-ghost" bind:value>
+		<select bind:this={ref} class="select select-ghost" bind:value>
 			{#if placeholder}
 				<option disabled selected>{placeholder}</option>
 			{/if}

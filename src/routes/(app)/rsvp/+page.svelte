@@ -1,8 +1,11 @@
 <script lang="ts">
+	import { untrack } from 'svelte'
 	import { superForm } from 'sveltekit-superforms/client'
 	import { AttendenceTypes, BreadTypes, MainDishTypes, type BreadType } from '$lib/types'
 	import Circle from '$lib/components/Circle.svelte'
 	import type { PageData } from './$types'
+
+	const defaultGuest = { name: '', mainDish: 'Beef Stew', breadSide: 'Gluten Full' } as const
 
 	const { data }: { data: PageData } = $props()
 	const { form, constraints, enhance, errors, message, delayed } = superForm(data.form, {
@@ -18,6 +21,12 @@
 				return 'Gluten Full'
 		}
 	}
+
+	$effect(() => {
+		untrack(() => {
+			$form.attendees = [defaultGuest]
+		})
+	})
 </script>
 
 <article class="container prose mx-auto px-4">
@@ -96,8 +105,14 @@
 			{:else if $form.attendance === AttendenceTypes.Attending}
 				{#each $form.attendees as _, index}
 					<div class="flex items-center">
-						<div class="">Attendee ({index + 1})</div>
-						{#if $form.attendees.length > 1}
+						<div>
+							{#if index === 0}
+								Invitee
+							{:else}
+								Guest +{index}
+							{/if}
+						</div>
+						{#if $form.attendees.length > 1 && index > 0}
 							<button
 								type="button"
 								class="btn btn-ghost btn-xs ml-4"
@@ -169,10 +184,8 @@
 					type="button"
 					class="btn btn-success self-center"
 					onclick={() => {
-					const attendee = { name: '', mainDish: 'Beef Stew',  breadSide: "Gluten Full" } as const
-					$form.attendees = [...$form.attendees, attendee]
-				}}
-					>Add Attendee</button
+						$form.attendees = [...$form.attendees, defaultGuest]
+					}}>Add Guest</button
 				>
 			{/if}
 

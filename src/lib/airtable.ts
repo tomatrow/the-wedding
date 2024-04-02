@@ -1,7 +1,7 @@
 import { AIRTABLE_TYPEGEN_ACCESS_TOKEN, AIRTABLE_TYPEGEN_WORKSPACE_ID } from '$env/static/private'
 import { pick } from 'lodash-es'
-import Airtable from 'airtable'
-import type { People, Campsites, Volunteers } from './schema/wedding'
+import Airtable, { type Table } from 'airtable'
+import type { People, Campsites, Volunteers, GrantedWishes, Wishes } from './schema/wedding'
 
 Airtable.configure({ apiKey: AIRTABLE_TYPEGEN_ACCESS_TOKEN })
 
@@ -9,21 +9,63 @@ const airtable = new Airtable()
 
 const base = airtable.base(AIRTABLE_TYPEGEN_WORKSPACE_ID)
 
-type AirtablePeople = Omit<People, 'Submit Time'> & {
-	'Submit Time': string
+type AirtableFormData<T extends { Name?: string; 'Submit Time'?: Date }> = Omit<T, 'Submit Time'> & {
+	'Submit Time'?: string
+	Name?: string
 }
 
-type AirtableCampsites = Omit<Campsites, 'Submit Time'> & {
-	'Submit Time': string
+type AirtablePeople = AirtableFormData<People>
+type AirtableCampsites = AirtableFormData<Campsites>
+type AirtableVolunteers = AirtableFormData<Volunteers>
+
+export class FormTable<T extends { Name?: string; 'Submit Time'?: Date }> {
+	table: Table<AirtableFormData<T>>
+
+	constructor(tableName: string) {
+		this.table = base.table(tableName)
+	}
+
+	create(value: T) {
+		return this.table.create([
+			{
+				fields: {
+					...value,
+					'Submit Time': value['Submit Time']?.toISOString()
+				}
+			}
+		])
+	}
+
+	getAll() {
+		return this.table
+			.select({
+				sort: [
+					{
+						field: 'Submit Time'
+					},
+					{
+						field: 'Name'
+					}
+				]
+			})
+			.all()
+	}
 }
 
-type AirtableVolunteers = Omit<Volunteers, 'Submit Time'> & {
-	'Submit Time': string
-}
+export const grantedWishesFormTable = new FormTable<GrantedWishes>('Granted Wishes')
 
+const wishesTable = base.table<Wishes>('Wishes')
 const peopleTable = base.table<AirtablePeople>('People')
 const campsitesTable = base.table<AirtableCampsites>('Campsites')
 const volunteersTable = base.table<AirtableVolunteers>('Volunteers')
+
+export function getWishes() {
+	return wishesTable
+		.select({
+			view: 'Grid view'
+		})
+		.all()
+}
 
 export function createVolunteer({ 'Submit Time': submitTime, ...rest }: Volunteers) {
 	return volunteersTable.create([
