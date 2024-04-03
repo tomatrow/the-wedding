@@ -4,7 +4,7 @@ import { superValidate, message, type Infer } from 'sveltekit-superforms/server'
 import { z } from 'zod'
 import { pick } from 'lodash-es'
 import { PeopleAttendance, PeopleMainDish, PeopleBread, PeopleSchema, type People } from '$lib/schema/wedding'
-import { createPeople, getPeople } from '$lib/airtable'
+import { createPeople, getPeople, getLentilCount } from '$lib/airtable'
 import type { Actions, PageServerLoad } from './$types'
 
 const NameSchema = z.string().min(1)
@@ -37,8 +37,10 @@ export const load: PageServerLoad = async ({ cookies }) => {
 		const people = await getPeople(insignia)
 		pastSubmissions = people.map((person) => pick(person.fields, 'Main Dish', 'Attendance', 'Bread', 'Name'))
 	}
+	
+	const lentilCount = await getLentilCount()
 
-	return { form, pastSubmissions }
+	return { form, pastSubmissions, lentilCount }
 }
 
 export const actions = {
