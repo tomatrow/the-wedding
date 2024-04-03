@@ -44,19 +44,16 @@
 			<table class="table table-xs bg-transparent">
 				<thead>
 					<tr class="bg-transparent text-white">
-						<th class="bg-transparent"></th>
 						<th class="bg-transparent">Wish</th>
 						<th class="bg-transparent">Granted</th>
-						<th class="bg-transparent">Link</th>
 						<th class="bg-transparent">Notes</th>
 					</tr>
 				</thead>
 				<tbody>
-					{#each data.wishes as { Quantity, Title, Link, Granted, Notes, id }, index (id)}
+					{#each data.wishes as { Quantity, Title, Link, Granted, Notes, id } (id)}
 						<tr class="h-12">
-							<th>{index + 1}</th>
 							<td class="bg-transparent">
-								<a target="_blank" href={Link}>
+								<a class="link" target="_blank" href={Link}>
 									{Title}
 
 									{#if Quantity > 1}
@@ -66,21 +63,17 @@
 							</td>
 							<td>
 								{#if Granted}
-									<input type="checkbox" checked={true} class="checkbox-primary checkbox pointer-events-none" />
+									<input type="checkbox" checked={true} class="checkbox-neutral checkbox pointer-events-none" />
 								{:else}
 									<button
 										type="button"
-										class="btn btn-primary btn-sm"
+										class="btn btn-neutral btn-sm"
 										onclick={async () => {
 											$form.wishId = id
 											ref?.scrollIntoView({ behavior: 'smooth' })
-											// ref?.focus()
 										}}>Grant</button
 									>
 								{/if}
-							</td>
-							<td>
-								<a target="_blank" href={Link}>link</a>
 							</td>
 							<td>{Notes}</td>
 						</tr>
