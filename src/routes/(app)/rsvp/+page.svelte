@@ -37,7 +37,8 @@
 		<p>
 			In true camping fashion, we plan to cook stew in two giant cauldrons over campfires. Because we will use two pots,
 			we can cook two kinds of stew. However, if most of you choose one kind over the other, we may decide not to cook
-			the less popular option.
+			the less popular option (Currently, only 4 people have chosen Lentil; we need at least 20 people to choose Lentil
+			in order to cook that option).
 		</p>
 		<p>
 			Both kinds will be free of the following components: eggs, dairy, gluten, corn, soy, nuts, and pork. If you have a
