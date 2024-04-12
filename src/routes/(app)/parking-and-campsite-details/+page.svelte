@@ -34,8 +34,8 @@
 		<p>
 			We have reserved <strong>12 campsites</strong> for Friday and Saturday. If you want to camp, please enter your
 			name, the number of people in your party, and how many vehicles you will bring. If you are bringing a trailer,
-			please check that box and note that the maximum allowed trailer length is <strong>24ft</strong>. Are you willing
-			to share a campsite with other guests? If so, what size is your tent?
+			please check that box and note that the maximum allowed trailer length is <strong>24ft</strong>. We may be able to
+			provide a tent if you do not have one.
 		</p>
 		<p>If you want to extend your stay, contact us, and we may be able to add additional days to your campsite.</p>
 		<p>
@@ -63,11 +63,11 @@
 
 			<NumberField label="Party Size" bind:value={$form.partySize} {...$constraints.partySize} />
 
-			<CheckboxField
+			<!-- <CheckboxField
 				bind:checked={$form.sharable}
 				label="Are you open to sharing a campsite?"
 				{...$constraints.sharable}
-			/>
+			/> -->
 
 			{#if $form.sharable && $form.tentSize}
 				<div class="flex flex-wrap gap-4" transition:slide={{ axis: 'y' }}>
@@ -108,21 +108,18 @@
 		{#if data.pastSubmissions.length}
 			<SubmissionsTable
 				data={data.pastSubmissions}
-				order={[
-					'Name',
-					'Party Size',
-					'Sharable',
-					'Tent Width',
-					'Tent Height',
-					'Primary Vehicle Type',
-					'Secondary Vehicle Type'
-				]}
+				order={['Name', 'Party Size', 'Primary Vehicle Type', 'Secondary Vehicle Type']}
 			/>
 		{/if}
 	</section>
 
 	<section>
 		<h2>Parking</h2>
+		<p>
+			Please bring $5 cash to pay the park entrance fee at the pay station. It's usually $10, but it's discounted for
+			the wedding. We can reimburse you for this fee, if needed.
+		</p>
+		
 		<p>If you are camping, please park in your assigned campsite. Otherwise, you may route to</p>
 		<address>Doane Valley Nature Trail</address>
 
