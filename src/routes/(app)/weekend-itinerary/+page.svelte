@@ -6,6 +6,21 @@
 <article class="container prose mx-auto px-4">
 	<h1>Weekend Itinerary</h1>
 
+	<section class="mt-8">
+		<h2>Map</h2>
+
+		<img class="rounded" alt="palomar mountain doane valley map" src="/palomar_mountain_doane_valley_map.jpg" />
+
+		<ul>
+			<li>Fun & Games: 31</li>
+			<li>Lentil: 8</li>
+			<li>Stew: 4</li>
+			<li>Sides: 6 & 7</li>
+			<li>Bridal tent: 28 & 29</li>
+			<li>Guest camping: 1, 2, 3, 9, and 10.</li>
+		</ul>
+	</section>
+
 	<section>
 		<h2>Friday:</h2>
 		<p>
@@ -24,15 +39,17 @@
 			</TimelineSegment>
 
 			<TimelineSegment time="2:45 PM" title="Ceremony">
-				Follow the signs to the ceremony site along Thunder Spring Trail.
+				Follow the signs to the ceremony site along Thunder Spring Trail (a leisurely 15-minute walk from the parking
+				lot).
 			</TimelineSegment>
 
 			<TimelineSegment time="3:15 PM" title="Fun & Games">
-				After the ceremony, return to the campground to enjoy a light snack and games.
+				After the ceremony, return to the campground to enjoy a light snack and games at campsite 31.
 			</TimelineSegment>
 
 			<TimelineSegment time="5:00 PM" title="Dinner">
-				Time for dinner! Retrieve your bowl and small plate from the table and line up for a ladle of stew.
+				Time for dinner! Retrieve your bowl and small plate from the table and line up for a ladle of stew with sides at
+				campsites 4, 6, 7, and 8.
 			</TimelineSegment>
 
 			<TimelineSegment time="5:00 PM" title="Speeches">

@@ -37,7 +37,7 @@ export const load: PageServerLoad = async ({ cookies }) => {
 		const people = await getPeople(insignia)
 		pastSubmissions = people.map((person) => pick(person.fields, 'Main Dish', 'Attendance', 'Bread', 'Name'))
 	}
-	
+
 	const lentilCount = await getLentilCount()
 
 	return { form, pastSubmissions, lentilCount }

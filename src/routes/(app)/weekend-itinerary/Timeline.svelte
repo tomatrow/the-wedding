@@ -20,10 +20,13 @@
 	import { setContext } from '$lib/context'
 	import Checkmark from './Checkmark.svelte'
 
-	const { children, class: className = '' } = $props<{
+	const {
+		children,
+		class: className = ''
+	}: {
 		children?: Snippet
 		class?: string
-	}>()
+	} = $props()
 
 	const items = $state<LineItem[]>([])
 

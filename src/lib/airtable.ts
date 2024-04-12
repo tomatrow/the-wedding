@@ -149,11 +149,11 @@ export async function getPeople(insignia: string) {
 }
 
 export async function getLentilCount() {
-	const people = await peopleTable.
-		select({
-			filterByFormula: `{Main Dish} = "Vegan Lentil Soup"`,
+	const people = await peopleTable
+		.select({
+			filterByFormula: `{Main Dish} = "Vegan Lentil Soup"`
 		})
 		.all()
-	
+
 	return people.length
 }

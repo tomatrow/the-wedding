@@ -37,8 +37,8 @@
 		<p>
 			In true camping fashion, we plan to cook stew in two giant cauldrons over campfires. Because we will use two pots,
 			we can cook two kinds of stew. However, if most of you choose one kind over the other, we may decide not to cook
-			the less popular option (Currently, only {data.lentilCount} people have joined team Lentil; we need at least 20 people on that team
-			in order to cook that option).
+			the less popular option (Currently, only {data.lentilCount} people have joined team Lentil; we need at least 20 people
+			on that team in order to cook that option).
 		</p>
 		<p>
 			Both kinds will be free of the following components: eggs, dairy, gluten, corn, soy, nuts, and pork. If you have a
@@ -47,11 +47,14 @@
 
 		<label class="flex flex-col gap-2">
 			<span class="badge badge-neutral">Lentil Level</span>
-			<progress value={data.lentilCount} max={20} class="progress w-56"
+			<progress
+				value={data.lentilCount}
+				max={20}
+				class="progress w-56"
 				class:progress-error={data.lentilCount < 10}
 				class:progress-warning={10 <= data.lentilCount && data.lentilCount < 20}
 				class:progress-success={data.lentilCount === 20}
-			 />
+			/>
 		</label>
 	</section>
 

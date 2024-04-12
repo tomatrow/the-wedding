@@ -124,11 +124,19 @@
 	<section>
 		<h2>Parking</h2>
 		<p>If you are camping, please park in your assigned campsite. Otherwise, you may route to</p>
-		<address>Doane Pond Day Use Area, Palomar Mountain, CA 92060</address>
+		<address>Doane Valley Nature Trail</address>
+
+		<a
+			href="https://maps.apple.com/?address=Pauma%20Valley,%20CA%2092061,%20United%20States&auid=4424481136211890498&ll=33.341500,-116.901423&lsp=9902&q=Doane%20Valley%20Natural%20Trail"
+			target="_blank">apple maps</a
+		>
+		| <a href="https://maps.app.goo.gl/NWriN8yszd6jJ7oU7" target="_blank">google maps</a>
+
 		<p>
 			This address will take you to a parking lot adjacent to the campground. Please be aware that this public parking
 			lot may fill up. If it is full when you arrive, you may park at the Silvercrest Picnic Area, about 10 minutes from
-			the pond. We will arrange for someone to ferry anyone who must park at Silvercrest.
+			the pond. We will arrange for someone to ferry anyone who must park at Silvercrest. There is no cell reception at
+			the campground, so please download your maps before you arrive.
 		</p>
 		<p>Because of limited parking spots, we ask that you carpool with other guests as much as possible.</p>
 	</section>
@@ -136,8 +144,8 @@
 	<section>
 		<h2>Accessibility</h2>
 		<p>
-			If your mobility is hindered, please note that the ceremony area is approximately a 3/4 mile hike from the parking
-			lot. Please contact us if you need an escort; we can bring a wheelchair.
+			If your mobility is hindered, please note that the ceremony area is a 15-minute hike from the parking lot. Please
+			contact us if you need an escort; we can bring a wheelchair.
 		</p>
 	</section>
 </article>

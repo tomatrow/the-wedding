@@ -4,7 +4,7 @@
 		Please peruse this website to learn all the details, and don’t hesitate to text us if you have any questions or
 		suggestions.
 	</p>
- 
+
 	<aside>
 		<h2>Helpful tips:</h2>
 		<p>
