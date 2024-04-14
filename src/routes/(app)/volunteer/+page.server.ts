@@ -12,11 +12,11 @@ const roles: {
 	description: string
 	value: Infer<typeof VolunteersRole>
 }[] = [
-	{
-		name: 'Ferry Driver',
-		description: 'The one who will remain on call to pick up anyone who must park at Silvercrest Picnic Area.',
-		value: VolunteersRole.enum['Ferry Driver']
-	},
+	// {
+	// 	name: 'Ferry Driver',
+	// 	description: 'The one who will remain on call to pick up anyone who must park at Silvercrest Picnic Area.',
+	// 	value: VolunteersRole.enum['Ferry Driver']
+	// },
 	{
 		name: 'Cauldron Tender',
 		description:
